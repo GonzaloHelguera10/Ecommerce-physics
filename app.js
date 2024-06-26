@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const contactData = {
             name: name,
             email: email,
-            message: message
+            message: message,
         };
-        
+    }
         try {
             // Envío los datos al endpoint usando fetch
             const response = await fetch(url, {
