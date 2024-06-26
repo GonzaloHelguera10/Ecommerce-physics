@@ -1,15 +1,17 @@
-// incio seccion formulario frijol
+// inicio del formulario de frijol
+
 const url = 'https://667a0a1018a459f639522931.mockapi.io/contact';
+const form = document.getElementById('contactForm');
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('contactForm');
+    const btn = document.getElementById('btn');
     
-    form.addEventListener('submit', async function (event) {
+    btn.addEventListener('click', async function (event) {
         event.preventDefault();
         
         // Obtengo los datos del formulario
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value; }
+        const message = document.getElementById('message').value;
         
         // Creo el objeto de datos
         const contactData = {
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         
         try {
-            // Envio los datos al endpoint usando fetch
+            // Envío los datos al endpoint usando fetch
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -28,9 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: JSON.stringify(contactData)
             });
 
-            // Procesar la respuesta del servidor
+            // Proceso la respuesta del servidor
             const result = await response.json();
             console.log('Respuesta del servidor:', result);
-
     });
 });
+// fin del formulario
