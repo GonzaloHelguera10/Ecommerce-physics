@@ -179,11 +179,11 @@ main {
     font-size: 0.9rem;
     line-height: 1.4;
     max-width: 300px;
-    text-align: justify; /* Justifica el texto para un espaciado uniforme */
-    display: flex; /* Usamos flexbox para centrar verticalmente */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 70px; /* Altura fija para el contenedor del párrafo */
+    text-align: justify; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 70px; 
 }
 
 .footer a {
@@ -196,7 +196,7 @@ main {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    gap: 2rem; /*puede definir tanto el espacio entre filas como entre columnas si el contenedor de flexbox tiene un diseño multidireccional*/
+    gap: 2rem; 
 }
 
 .media-icons li,
