@@ -9,6 +9,72 @@ menuIcon.addEventListener('click', () => {
     navbar.classList.toggle('active');
     navbg.classList.toggle('active');
 });
+//  Crracion de usuario y admin frijol
+let urlUsers = 'https://667a0a1018a459f639522931.mockapi.io/users';
+
+const users = [
+    {
+        name: "Juan",
+        lastname: "Perez",
+        email: "juan.doe@example.com",
+        password: "contra234",
+        role: "User"
+    },
+    {
+        name: "Pedro",
+        lastname: "Perez",
+        email: "pedro@example.com",
+        password: "contra123",
+        role: "Admin"
+    }
+];
+
+users.forEach(async (user) => {
+    try {
+        const response = await fetch(urlUsers, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        const result = await response.json();
+        console.log('Usuario creado:', result);
+    } catch (error) {
+        console.error('Error al crear usuario:', error);
+    }
+});
+
+// Vincular login con mockapi para validar
+
+const loginForm = document.getElementById('formLogin');
+    const loginUrl = 'https://667a0a1018a459f639522931.mockapi.io/users';
+
+    async function loginUser() {
+        event.preventDefault();
+
+        const nombre = document.getElementById('loginNombre').value;
+        const apellido = document.getElementById('loginApellido').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+            const response = await fetch(loginUrl);
+            const users = await response.json();
+
+            const user = users.find(u => u.name === nombre && u.lastname === apellido && u.password === password);
+
+            if (user) {
+                console.log('Inicio de sesión exitoso:', user); 
+                alert('¡Inicio de sesión exitoso!');
+                loginForm.reset();
+            } else {
+                console.error('Inicio de sesión fallido: Nombre, Apellido o Contraseña incorrectos.'); 
+                alert('Nombre, Apellido o Contraseña incorrectos.');
+            }
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+        }
+    }
 
 //Pagina Estatica Carrito (Imagenes y links de Ejemplo)
 
@@ -155,24 +221,25 @@ document.addEventListener('DOMContentLoaded', renderCart());
 
 const url = 'https://667a0a1018a459f639522931.mockapi.io/contact';
 const form = document.getElementById('contactForm');
+
 document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('btn');
-    
+
     btn.addEventListener('click', async function (event) {
         event.preventDefault();
-        
+
         // Obtengo los datos del formulario
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
-        
+
         // Creo el objeto de datos
         const contactData = {
             name: name,
             email: email,
             message: message,
         };
-    }
+
         try {
             // Envío los datos al endpoint usando fetch
             const response = await fetch(url, {
@@ -182,11 +249,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: JSON.stringify(contactData)
             });
+            console.log('Datos enviados con exito');
 
             // Proceso la respuesta del servidor
             const result = await response.json();
             console.log('Respuesta del servidor:', result);
+        } catch (error) {
+            console.error('Error al enviar los datos:', error);
+        }
     });
 });
+
 // fin del formulario
 
