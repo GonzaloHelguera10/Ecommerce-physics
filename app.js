@@ -45,6 +45,37 @@ users.forEach(async (user) => {
     }
 });
 
+// Vincular login con mockapi para validar
+
+const loginForm = document.getElementById('formLogin');
+    const loginUrl = 'https://667a0a1018a459f639522931.mockapi.io/users';
+
+    async function loginUser() {
+        event.preventDefault();
+
+        const nombre = document.getElementById('loginNombre').value;
+        const apellido = document.getElementById('loginApellido').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+            const response = await fetch(loginUrl);
+            const users = await response.json();
+
+            const user = users.find(u => u.name === nombre && u.lastname === apellido && u.password === password);
+
+            if (user) {
+                console.log('Inicio de sesión exitoso:', user); 
+                alert('¡Inicio de sesión exitoso!');
+                loginForm.reset();
+            } else {
+                console.error('Inicio de sesión fallido: Nombre, Apellido o Contraseña incorrectos.'); 
+                alert('Nombre, Apellido o Contraseña incorrectos.');
+            }
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+        }
+    }
+
 //Pagina Estatica Carrito (Imagenes y links de Ejemplo)
 
 const products = [
