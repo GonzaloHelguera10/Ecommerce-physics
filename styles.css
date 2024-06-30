@@ -8,6 +8,9 @@
 button.logout-btn {
     display: none;
 }
+.create_products{
+    display: none;
+}
 /* login de frijol */
 .content-login{
     margin-top: 100px;
@@ -233,7 +236,7 @@ h1 {
 }
 
 .submit_Form {
-    max-width: 500px;
+    width: 600px;
     margin: 0 auto;
     margin-top: 100px;
     padding: 20px;

@@ -35,37 +35,5 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error("Error al añadir el producto:", error));
     });
 
-    // Obtener y renderizar los productos
-    function fetchProducts() {
-        fetch(endpoint)
-        .then(response => response.json())
-        .then(products => {
-            renderProducts(products);
-        })
-        .catch(error => console.error("Error al obtener los productos:", error));
-    }
-
-    // Renderizar los productos en tarjetas
-    function renderProducts(products) {
-        productContainer.innerHTML = ""; // Limpiar el contenedor
-        products.forEach(product => {
-            const productCard = document.createElement("div");
-            productCard.className = "product-card";
-            productCard.innerHTML = `
-                <img src="${product.image}" alt="${product.title}" class="product-image"/>
-                <h3>${product.title}</h3>
-                <p>Precio: $${product.price.toFixed(2)}</p>
-                <button onclick="viewProduct(${product.idProduct})">Ver Producto</button>
-            `;
-            productContainer.appendChild(productCard);
-        });
-    }
-
-    // Ver producto
-    window.viewProduct = function(idProduct) {
-        alert(`Producto ID: ${idProduct}`);
-    };
-
-    // Inicialmente obtener y renderizar los productos
-    fetchProducts();
+    
 });
