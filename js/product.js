@@ -69,3 +69,4 @@ document.addEventListener("DOMContentLoaded", function() {
     // Inicialmente obtener y renderizar los productos
     fetchProducts();
 });
+
