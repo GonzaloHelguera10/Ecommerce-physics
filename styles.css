@@ -9,7 +9,7 @@ button.logout-btn {
     display: none;
 }
 .create_products{
-    display: none;
+    display: block;
 }
 /* login de frijol */
 .content-login{

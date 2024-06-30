@@ -36,6 +36,18 @@ users.forEach(async (user) => {
 
 // Vincular login con mockapi para validar
 
+// Función para mostrar el botón de crear producto si es admin
+function mostrarCrearProductoSiAdmin() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const createProductBtn = document.getElementById('create_product');
+
+    if (loggedInUser && loggedInUser.role === 'Admin') {
+        createProductBtn.style.display = 'block';
+    } else {
+        createProductBtn.style.display = 'none';
+    }
+}
+
 const loginForm = document.getElementById('formLogin');
 const loginUrl = 'https://667a0a1018a459f639522931.mockapi.io/users';
 const registerLink = document.getElementById('registerLink');
@@ -73,6 +85,7 @@ async function loginUser(event) {
     }
 }
 
+
 // Verifico si hay un usuario logueado al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     const registerLink = document.getElementById('registerLink');
@@ -86,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         registerLink.textContent = `${loggedInUser.name} ${loggedInUser.lastname}`;
         registerLink.href = "#"; // Desactivo el enlace
         logoutBtn.style.display = 'block'; // Muestro el botón de cerrar sesión
+        mostrarCrearProductoSiAdmin();
 
         // Muestro el botón de crear producto si el rol es Admin
         if (loggedInUser.role === 'Admin') {
@@ -108,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutBtn.classList.add('btn', 'btn-danger');
     logoutBtn.style.marginLeft = '10px';
     const registerLink = document.getElementById('registerLink');
+
+    
    
 
     // Función para cerrar la sesión
