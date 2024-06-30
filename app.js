@@ -12,6 +12,7 @@ menuIcon.addEventListener('click', () => {
 
 //Pagina Estatica Carrito (Imagenes y links de Ejemplo)
 
+
 const products = [
     {
         id: 1,
@@ -98,16 +99,19 @@ function renderCart() {
         actions.className = 'actions';
 
         const minusButton = document.createElement('button');
+        minusButton.className = 'btn btn-primary';
         minusButton.textContent = '-';
         minusButton.onclick = () => updateQuantity(product.id, -1);
         actions.appendChild(minusButton);
 
         const plusButton = document.createElement('button');
+        plusButton.className = 'btn btn-primary';
         plusButton.textContent = '+';
         plusButton.onclick = () => updateQuantity(product.id, 1);
         actions.appendChild(plusButton);
 
         const removeButton = document.createElement('button');
+        removeButton.className = 'btn btn-primary';
         removeButton.textContent = 'Eliminar';
         removeButton.onclick = () => removeProduct(product.id);
         actions.appendChild(removeButton);
