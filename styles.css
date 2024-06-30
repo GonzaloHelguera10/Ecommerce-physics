@@ -177,10 +177,19 @@ main {
 
 /* Carrito Estatico*/
 
-.cart {
+.completecart {
     margin-bottom: 20px;
+    margin-top: 70px;
+    background-color: white;
+    border-radius: 20px;
 }
 
+.completecart h1 {
+    font-size: 50px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 35px;
+}
 .product {
     display: flex;
     align-items: center;
@@ -206,8 +215,12 @@ main {
     margin: 0 5px;
 }
 
-.total {
+.totalcart {
     font-size: 1.5em;
+}
+
+.totalcart h2 {
+    margin-left: 5px;
 }
 
 /*Footer*/
