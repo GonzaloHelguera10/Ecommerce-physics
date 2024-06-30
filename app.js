@@ -48,33 +48,53 @@ users.forEach(async (user) => {
 // Vincular login con mockapi para validar
 
 const loginForm = document.getElementById('formLogin');
-    const loginUrl = 'https://667a0a1018a459f639522931.mockapi.io/users';
+const loginUrl = 'https://667a0a1018a459f639522931.mockapi.io/users';
+const registerLink = document.getElementById('registerLink');
 
-    async function loginUser() {
-        event.preventDefault();
+async function loginUser(event) {
+    event.preventDefault();
 
-        const nombre = document.getElementById('loginNombre').value;
-        const apellido = document.getElementById('loginApellido').value;
-        const password = document.getElementById('loginPassword').value;
+    const nombre = document.getElementById('loginNombre').value;
+    const apellido = document.getElementById('loginApellido').value;
+    const password = document.getElementById('loginPassword').value;
 
-        try {
-            const response = await fetch(loginUrl);
-            const users = await response.json();
+    try {
+        const response = await fetch(loginUrl);
+        const users = await response.json();
 
-            const user = users.find(u => u.name === nombre && u.lastname === apellido && u.password === password);
+        const user = users.find(u => u.name === nombre && u.lastname === apellido && u.password === password);
 
-            if (user) {
-                console.log('Inicio de sesión exitoso:', user); 
-                alert('¡Inicio de sesión exitoso!');
-                loginForm.reset();
-            } else {
-                console.error('Inicio de sesión fallido: Nombre, Apellido o Contraseña incorrectos.'); 
-                alert('Nombre, Apellido o Contraseña incorrectos.');
-            }
-        } catch (error) {
-            console.error('Error al iniciar sesión:', error);
+        if (user) {
+            alert('¡Inicio de sesión exitoso!');
+
+            // Guardo los datos del usuario en localStorage
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+
+            // Actualizo el enlace de "Registrarse" con el nombre del usuario
+
+            // Redirecciono a la página de inicio
+            window.location.href = "../index.html";
+        } else {
+            console.error('Inicio de sesión fallido: Nombre, Apellido o Contraseña incorrectos.');
+            alert('Nombre, Apellido o Contraseña incorrectos.');
         }
+    } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        alert('Ocurrió un error al intentar iniciar sesión.');
     }
+}
+
+// Verifico si hay un usuario logueado al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (loggedInUser) {
+        registerLink.textContent = `${loggedInUser.name} ${loggedInUser.lastname}`;
+        registerLink.href = "#"; // Desactivar el enlace
+    }
+});
+
+// Asigno la función de login al formulario
+loginForm.addEventListener('submit', loginUser);
 
 //Pagina Estatica Carrito (Imagenes y links de Ejemplo)
 
