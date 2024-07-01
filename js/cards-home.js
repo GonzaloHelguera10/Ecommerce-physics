@@ -1,68 +1,59 @@
-// Cards home
+// Función para crear una tarjeta de producto minimalista
+function createProductCard(product) {
+    // Verifica si todos los campos necesarios existen y tienen datos válidos
+    if (!product.image || !product.title || !product.price) {
+        console.error('Faltan datos necesarios para crear la tarjeta de producto:', product);
+        return '';
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const products = [
-        {
-            title: 'Producto 1',
-            image: './images/microscopio.jpg',
-            price: 99.99,
-        },
-        {
-            title: 'Producto 2',
-            image: './images/telescope1.jpg',
-            price: 149.99,
-        },
-        {
-            title: 'Producto 3',
-            image: './images/luna.jpg',
-            price: 199.99,
-        },
-        {
-            title: 'Producto 1',
-            image: './images/microscopio.jpg',
-            price: 99.99,
-        },
-        {
-            title: 'Producto 2',
-            image: './images/telescope1.jpg',
-            price: 149.99,
-        },
-        {
-            title: 'Producto 3',
-            image: './images/luna.jpg',
-            price: 199.99,
-        },
-        {
-            title: 'Producto 1',
-            image: './images/microscopio.jpg',
-            price: 99.99,
-        },
-        {
-            title: 'Producto 2',
-            image: './images/telescope1.jpg',
-            price: 149.99,
-        },
-        {
-            title: 'Producto 3',
-            image: './images/luna.jpg',
-            price: 199.99,
-        },
-        // Agrega más productos según sea necesario
-    ];
+    return `
+        <div class="product-card">
+            <img src="${product.image}" alt="${product.title}" />
+            <h2>${product.title}</h2>
+            <p>Precio: $${product.price}</p>
+            <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+    `;
+}
 
-    const productsContainer = document.getElementById('products-container');
+const endpoint = "https://668177d804acc3545a06c523.mockapi.io/api/products";
 
-    products.forEach(product => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-            <img src="${product.image}" class="card-img-top" alt="${product.title}">
-            <div class="card-body">
-                <h5 class="card-title">${product.title}</h5>
-                <p class="card-text">Precio: $${product.price}</p>
-                <a href="#" class="btn btn-primary">Ingresar al producto</a>
-            </div>
-        `;
-        productsContainer.appendChild(card);
-    });
-});
+// Función para obtener los productos y renderizar las tarjetas
+async function renderProductCards() {
+    try {
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+        const products = await response.json();
+
+        const productContainer = document.getElementById('product-container');
+        if (!productContainer) {
+            console.error('No se encontró el contenedor con id "product-container".');
+            return;
+        }
+        productContainer.innerHTML = ''; // Limpiar contenido previo
+
+        products.forEach(product => {
+            const productCard = createProductCard(product);
+            productContainer.innerHTML += productCard;
+        });
+
+        // Agregar eventos a los botones de "Agregar al carrito"
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                // Aquí podrías agregar la lógica para manejar la acción de agregar al carrito
+                alert('Producto agregado al carrito!');
+            });
+        });
+
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+    }
+}
+
+// Llamar a la función cuando se cargue la página
+document.addEventListener('DOMContentLoaded', renderProductCards);
+
+// Llamar a la función cuando se cargue la página
+document.addEventListener('DOMContentLoaded', renderProductCards);
