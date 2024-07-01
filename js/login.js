@@ -1,4 +1,5 @@
 //  Crracion de usuario y admin frijol
+const flag = false;
 let urlUsers = 'https://667a0a1018a459f639522931.mockapi.io/users';
 
 const users = [
@@ -93,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createProductBtn = document.getElementById('create_product');
 
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    console.log(loggedInUser);
 
     if (loggedInUser) {
         // Actualizo el enlace de "Registrarse" con el nombre del usuario
@@ -102,8 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarCrearProductoSiAdmin();
 
         // Muestro el botón de crear producto si el rol es Admin
-        if (loggedInUser.role === 'Admin') {
-            createProductBtn.style.display = 'block';
+        if (loggedInUser && loggedInUser.role === 'Admin') {
+             flag = true; // Asegúrate de que la variable flag esté declarada
+            console.log('Flag es verdadero:', flag);
+        } else {
+            // Puedes manejar otros roles o casos en este bloque else si es necesario
+            console.log('Usuario no es Admin o loggedInUser no está definido');
         }
     } else {
         // Aseguro que el botón de crear producto esté oculto si no hay usuario logueado
@@ -124,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerLink = document.getElementById('registerLink');
 
     
-   
+
 
     // Función para cerrar la sesión
     function cerrarSesion() {
