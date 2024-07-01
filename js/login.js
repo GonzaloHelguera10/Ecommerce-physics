@@ -36,6 +36,18 @@ users.forEach(async (user) => {
 
 // Vincular login con mockapi para validar
 
+// Función para mostrar el botón de crear producto si es admin
+function mostrarCrearProductoSiAdmin() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const createProductBtn = document.getElementById('create_product');
+
+    if (loggedInUser && loggedInUser.role === 'Admin') {
+        createProductBtn.style.display = 'block';
+    } else {
+        createProductBtn.style.display = 'none';
+    }
+}
+
 const loginForm = document.getElementById('formLogin');
 const loginUrl = 'https://667a0a1018a459f639522931.mockapi.io/users';
 const registerLink = document.getElementById('registerLink');
@@ -49,16 +61,17 @@ async function loginUser(event) {
 
     try {
         const response = await fetch(loginUrl);
+        if (!response.ok) {
+            throw new Error('Error al obtener la lista de usuarios');
+        }
         const users = await response.json();
 
         const user = users.find(u => u.name === nombre && u.lastname === apellido && u.password === password);
-
+        
         if (user) {
             alert('¡Inicio de sesión exitoso!');
             // Guardo los datos del usuario en localStorage
             localStorage.setItem('loggedInUser', JSON.stringify(user));
-
-            // Actualizo el enlace de "Registrarse" con el nombre del usuario
 
             // Redirecciono a la página de inicio
             window.location.href = "../index.html";
@@ -72,26 +85,45 @@ async function loginUser(event) {
     }
 }
 
+
 // Verifico si hay un usuario logueado al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
+    const registerLink = document.getElementById('registerLink');
+    const logoutBtn = document.getElementById('logout-btn');
+    const createProductBtn = document.getElementById('create_product');
+
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
     if (loggedInUser) {
+        // Actualizo el enlace de "Registrarse" con el nombre del usuario
         registerLink.textContent = `${loggedInUser.name} ${loggedInUser.lastname}`;
         registerLink.href = "#"; // Desactivo el enlace
-        const logoutBtn = document.getElementById('logout-btn');
-        logoutBtn.style.display = 'block';
+        logoutBtn.style.display = 'block'; // Muestro el botón de cerrar sesión
+        mostrarCrearProductoSiAdmin();
+
+        // Muestro el botón de crear producto si el rol es Admin
+        if (loggedInUser.role === 'Admin') {
+            createProductBtn.style.display = 'block';
+        }
+    } else {
+        // Aseguro que el botón de crear producto esté oculto si no hay usuario logueado
+        createProductBtn.style.display = 'none';
     }
 });
+
 
 // Asigno la función de login al formulario
 
 // logout frijol
+
 // Esperar a que el DOM esté completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logout-btn');
     logoutBtn.classList.add('btn', 'btn-danger');
     logoutBtn.style.marginLeft = '10px';
     const registerLink = document.getElementById('registerLink');
+
+    
    
 
     // Función para cerrar la sesión
@@ -101,8 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Cambiar el texto del elemento <a> a "Registrarse"
         registerLink.textContent = "Registrarse";
-        registerLink.href="./pages/login.html"
+        registerLink.href="../pages/login.html"
         logoutBtn.style.display = 'none';
+        window.location.href = "../index.html";
     }
 
     // Asignar la función cerrarSesion al evento click del botón
@@ -110,3 +143,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 loginForm.addEventListener('submit', loginUser);
+

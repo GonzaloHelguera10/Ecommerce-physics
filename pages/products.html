@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <title>Crear Productos</title>
+</head>
+<body>
+    <!--Inicio seccion Navbar Facundo-->
+    <header class="header">
+        <a href="#" class="logo">Crear prodcuto nuevo</a>
+        <!--icono de menu-->
+        <i class='bx bx-menu' id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="../index.html">Home <i class='bx bx-home'></i></a>
+            <a id="registerLink" href="login.html">Registrarse <i class='bx bxs-user-circle'></i></a>
+            <button class="logout-btn" id="logout-btn">Cerrar Sesión</button>
+
+        </nav>
+
+    </header>
+    <div class="nav-bg"></div>
+    <!--Fin Seccion Navbar Facundo-->
+
+    <form class="submit_Form" id="submitForm">
+
+        <input type="text"
+        id="productTitle"
+        placeholder="Add neew product title"
+        class="form-control"
+        required
+        />
+        <input type="text"
+        id="productDescription"
+        placeholder="Add neew product Description"
+        class="form-control"
+        required
+        />
+        <input type="text"
+        id="productStock"
+        placeholder="Add neew product Stock"
+        class="form-control"
+        required
+        />
+        <input type="text"
+        id="productCategory"
+        placeholder="Add neew product Category"
+        class="form-control"
+        required
+        />
+        <input type="text"
+        id="productImage"
+        placeholder="Add neew product Image"
+        class="form-control"
+        required
+        />
+        <input type="text"
+        id="productPrice"
+        placeholder="Add new product Price"
+        class="form-control"
+        required
+        />
+        <button type="submit" class="boton">
+            Add
+        </button>
+    </form>
+    <script src="../app.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/product.js"></script>
+</body>
+</html>
