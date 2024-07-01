@@ -54,7 +54,7 @@ button.logout-btn {
     display: none;
 }
 .create_products{
-    display: block;
+    display: none;
 }
 /* login de frijol */
 .content-login{
