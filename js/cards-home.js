@@ -1,4 +1,3 @@
-// Función para crear una tarjeta de producto minimalista
 function createProductCard(product) {
     // Verifica si todos los campos necesarios existen y tienen datos válidos
     if (!product.image || !product.title || !product.price) {
@@ -7,7 +6,7 @@ function createProductCard(product) {
     }
 
     return `
-        <div class="product-card">
+        <div class="product-card" data-id="${product.id}">
             <img src="${product.image}" alt="${product.title}" />
             <h2>${product.title}</h2>
             <p>Precio: $${product.price}</p>
@@ -42,8 +41,9 @@ async function renderProductCards() {
         // Agregar eventos a los botones de "Agregar al carrito"
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
-                // Aquí podrías agregar la lógica para manejar la acción de agregar al carrito
-                alert('Producto agregado al carrito!');
+                const productCard = this.closest('.product-card');
+                const productId = productCard.getAttribute('data-id');
+                addToCart(productId, products);
             });
         });
 
@@ -52,8 +52,19 @@ async function renderProductCards() {
     }
 }
 
-// Llamar a la función cuando se cargue la página
-document.addEventListener('DOMContentLoaded', renderProductCards);
+// Función para agregar productos al carrito
+function addToCart(productId, products) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = products.find(p => p.id === productId);
+
+    if (product) {
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('Producto agregado al carrito!');
+    } else {
+        console.error('Producto no encontrado:', productId);
+    }
+}
 
 // Llamar a la función cuando se cargue la página
 document.addEventListener('DOMContentLoaded', renderProductCards);
