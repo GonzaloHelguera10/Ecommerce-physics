@@ -5,7 +5,7 @@ function createProductCard(product) {
     }
 
     return `
-        <div class="product-card">
+        <div class="product-card" data-title="${product.title}" data-price="${product.price}" data-image="${product.image}">
             <img src="${product.image}" alt="${product.title}" />
             <h2>${product.title}</h2>
             <p>Precio: $${product.price}</p>
@@ -36,15 +36,25 @@ async function renderProductCards() {
         productContainer.innerHTML += productCard;
 
         // Agregar eventos a los botones de "Agregar al carrito"
-        const addToCartButton = productContainer.querySelector('.add-to-cart');
-        addToCartButton.addEventListener('click', function() {
-            // Aquí podrías agregar la lógica para manejar la acción de agregar al carrito
-            // Por ejemplo, guardar el producto en el localStorage
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-            cartItems.push(product);
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.parentElement;
+                const title = card.getAttribute('data-title');
+                const price = card.getAttribute('data-price');
+                const image = card.getAttribute('data-image'); // Obtener la URL de la imagen
 
-            alert('Producto agregado al carrito!');
+                // Obtener productos del carrito de localStorage o inicializar vacío
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                // Agregar el producto al carrito
+                cart.push({ title, price, image });
+
+                // Guardar en localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                alert('Producto agregado al carrito!');
+            });
+
         });
     });
 }
