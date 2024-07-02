@@ -18,22 +18,24 @@ const endpoint = "https://668177d804acc3545a06c523.mockapi.io/api/products";
 
 // Función para obtener los productos y renderizar las tarjetas
 async function renderProductCards() {
-    const response = await fetch(endpoint);
-    if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
-    }
-    const products = await response.json();
+    try {
+        const response = await fetch(endpoint);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.statusText}`);
+        }
+        const products = await response.json();
 
-    const productContainer = document.getElementById('product-container');
-    if (!productContainer) {
-        console.error('No se encontró el contenedor con id "product-container".');
-        return;
-    }
-    productContainer.innerHTML = ''; // Limpiar contenido previo
+        const productContainer = document.getElementById('product-container');
+        if (!productContainer) {
+            console.error('No se encontró el contenedor con id "product-container".');
+            return;
+        }
+        productContainer.innerHTML = ''; // Limpiar contenido previo
 
-    products.forEach(product => {
-        const productCard = createProductCard(product);
-        productContainer.innerHTML += productCard;
+        products.forEach(product => {
+            const productCard = createProductCard(product);
+            productContainer.innerHTML += productCard;
+        });
 
         // Agregar eventos a los botones de "Agregar al carrito"
         document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -52,11 +54,23 @@ async function renderProductCards() {
                 // Guardar en localStorage
                 localStorage.setItem('cart', JSON.stringify(cart));
 
+                // Actualizar contador de productos en el carrito
+                updateCartCounter();
+
                 alert('Producto agregado al carrito!');
             });
-
         });
-    });
+
+    } catch (error) {
+        console.error('Error al obtener los productos:', error);
+    }
+}
+
+// Función para actualizar contador de productos en el carrito
+function updateCartCounter() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const countElement = document.getElementById('cuenta_carrito');
+    countElement.textContent = cart.length;
 }
 
 // Llamar a la función cuando se cargue la página
