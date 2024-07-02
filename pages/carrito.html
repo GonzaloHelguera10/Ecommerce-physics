@@ -31,21 +31,16 @@
         <p>Contenido principal</p>
     </main>
     <!--Carrito-->
-    <section class="completecart">
-        <h1>Resumen de Compra</h1>
-        
-        <div id="cart" class="cartrender">
-           <!-- la info del carrito la hago dinamica -->
-        </div>
-        
-        <div id="total" class="totalcart">
-          <h2>Total: $<span id="totalPrice">0</span></h2>
-        </div>
-          
-        <div class="button compra">
-          <button onclick="realizarCompra()" class="btn btn-primary btn-lg">
-              Realizar Compra
-          </button>
+    <section>
+        <div class="cart-container">
+            <button id="clear-cart">Limpiar Carrito</button>
+            <div id="cart-items"></div>
+            <div class="total-container">
+                <p>Total: $<span id="cart-total">0</span></p>
+            </div>
+            <div class="cart-actions">
+                <button id="buy-now">Comprar</button>
+            </div>
         </div>
       </section>
 
@@ -163,6 +158,7 @@
     <script src="../app.js"></script>
     <script src="../js/login.js"></script>
     <script src="../js/cart.js"></script>
+    <script src="../js/render-cart-fromlocal.js"></script>
 
 
 </body>
