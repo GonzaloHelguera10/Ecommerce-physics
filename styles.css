@@ -2,7 +2,7 @@
 .product-card {
     border: 1px solid #ddd;
     padding: 16px;
-    margin: 16px;
+    margin: auto;
     border-radius: 8px;
     text-align: center;
     width: 300px;
@@ -42,6 +42,7 @@
 .add-to-cart:hover {
     background-color: #0056b3;
 }
+
 
 /*Estilo formulario frijol*/
 .form-container {
@@ -96,7 +97,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('/images/background.jpg') no-repeat;
+    /*background: url('/images/background.jpg') no-repeat;*/
+    background-color: #264653;
     background-size: cover;
     background-position: center;
 }
@@ -143,14 +145,14 @@ body {
     color: #fff;
     font-size: 18px;
     text-decoration: none;
-    font-weight: 450;
+    /*font-weight: 450;*/
     margin-left: 35px;
     transition: .3s;
 }
 
-.navbar a.i {
+/*.navbar a.i {
     margin-right: 30px;
-}
+}*/
 
 .navbar a:hover {
     color: #ae2012;
@@ -181,7 +183,8 @@ body {
     }
 
     .navbar {
-        position: fixed;
+        /*position: fixed;*/
+        position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
@@ -199,7 +202,8 @@ body {
     }
 
     .nav-bg {
-        position: fixed;
+        /*position: fixed;*/
+        position: absolute;
         top: 1%;
         left: 0;
         width: 100%;
