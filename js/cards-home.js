@@ -7,7 +7,7 @@ function createProductCard(product) {
     }
 
     return `
-        <div class="product-card">
+        <div class="product-card" data-title="${product.title}" data-price="${product.price}">
             <img src="${product.image}" alt="${product.title}" />
             <h2>${product.title}</h2>
             <p>Precio: $${product.price}</p>
@@ -42,7 +42,19 @@ async function renderProductCards() {
         // Agregar eventos a los botones de "Agregar al carrito"
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', function() {
-                // Aquí podrías agregar la lógica para manejar la acción de agregar al carrito
+                const card = this.parentElement;
+                const title = card.getAttribute('data-title');
+                const price = card.getAttribute('data-price');
+
+                // Obtener productos del carrito de localStorage o inicializar vacío
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                // Agregar el producto al carrito
+                cart.push({ title, price });
+
+                // Guardar en localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
                 alert('Producto agregado al carrito!');
             });
         });
@@ -51,9 +63,6 @@ async function renderProductCards() {
         console.error('Error al obtener los productos:', error);
     }
 }
-
-// Llamar a la función cuando se cargue la página
-document.addEventListener('DOMContentLoaded', renderProductCards);
 
 // Llamar a la función cuando se cargue la página
 document.addEventListener('DOMContentLoaded', renderProductCards);
