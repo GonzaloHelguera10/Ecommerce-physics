@@ -97,7 +97,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    /*background: url('/images/background.jpg') no-repeat;*/
+    background: url('/images/background.jpg') no-repeat;
     background-color: #264653;
     background-size: cover;
     background-position: center;
@@ -738,3 +738,49 @@ h1 {
     .boton-personalizado:hover {
         background-color: #0056b3;
     }
+
+    /* Carrito desplegable */
+
+    .cart-icon-container {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .cart-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 1000;
+        display: none;
+        min-width: 200px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .cart-icon-container:hover .cart-dropdown {
+        display: block;
+    }
+    
+    .cart-item-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .cart-item-actions {
+        display: flex;
+        align-items: center;
+    }
+    
+    .cart-item-actions button {
+        margin-left: 5px;
+    }
+    .cart-item-title {
+        font-weight: bold;
+        font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    }
+    

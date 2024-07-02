@@ -19,11 +19,26 @@
         <nav class="navbar">
             <a href="#">Home <i class='bx bx-home'></i></a>
             <a href="./pages/login.html" id="registerLink">Registrarse <i class='bx bxs-user-circle'></i></a>
-            <a href="./pages/carrito.html" class="navicon">Carrito <i class='bx bx-cart' ></i></a>
             <a href="./pages/products.html" id="create_products" class="create_products">Crear Productos<i></i></a>
-            <button class="logout-btn" id="logout-btn">Cerrar Sesión</button>
-        </nav>
 
+            <!-- carrito -->
+ <!-- Ícono del carrito con menú desplegable -->
+<div class="cart-icon-container">
+    <a href="#" id="cart-icon">
+        <i class="bx bx-cart"></i>
+        <span id="cart-item-count" class="badge badge-danger">0</span>
+    </a>
+    <div class="cart-dropdown">
+        <ul id="cart-items-list" class="list-group">
+            <!-- Los elementos del carrito se añaden dinámicamente aquí -->
+        </ul>
+        <div class="dropdown-footer">
+            <button class="btn btn-primary btn-sm" id="clear-cart-btn">Limpiar Carrito</button>
+            <a href="./pages/carrito.html" class="btn btn-success btn-sm">Ir al Carrito</a>
+        </div>
+    </div>
+</div>
+<button class="logout-btn" id="logout-btn">Cerrar Sesión</button>
     </header>
     <div class="nav-bg"></div>
     <!--Fin Seccion Navbar Facundo-->
@@ -139,6 +154,7 @@
     <script src="./js/login.js"></script>
     <script src="./js/cards-home.js"></script>
     <script src="./js/developers.js"></script>
+    <script src="./js/dropdown-cart.js"></script>
 
 </body>
 </html>
