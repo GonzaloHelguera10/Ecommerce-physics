@@ -20,26 +20,37 @@
             <a href="#">Home <i class='bx bx-home'></i></a>
             <a href="./pages/login.html" id="registerLink">Registrarse <i class='bx bxs-user-circle'></i></a>
             <a href="./pages/carrito.html" class="navicon">Carrito <i class='bx bx-cart' ></i></a>
-            <a href="./pages/products.html" class="create_products" id="create_products" class="create_products">Crear Productos<i></i></a>
+            <a href="./pages/products.html" id="create_products" class="create_products">Crear Productos<i></i></a>
             <button class="logout-btn" id="logout-btn">Cerrar Sesión</button>
         </nav>
 
     </header>
     <div class="nav-bg"></div>
     <!--Fin Seccion Navbar Facundo-->
+
+    <!--Seccion slider facundo-->
+        <div class="slider-container">
+            <div class="slider">
+                <button class="prev"></button>
+                <div class="slides">
+                    <!-- Las imágenes del slider se insertarán aquí dinámicamente -->
+                </div>
+                <button class="next"></button>
+            </div>
+        </div>
+
+
     <main>
-        <!-- Contenido principal de la página -->
-        <p>Contenido principal</p>
+        <!-- Contenido principal de la página facundo-->
+        
         <div class="container mt-5">
             <div class="row" id="product-container">
 
             </div>
         </div>
     </main>
-     <!-- Slider -->
 
     <!--Inicio Footer Facundo-->
-
     <footer class="footer">
     <div class="container">
         <div class="row">
@@ -81,11 +92,34 @@
                     </div>
                 </div>
             </div>
-            <div>
-                
+            <div class="col2">
+                <ul class="menu">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Contacto</a>
+                    </li>
+                    <li>
+                        <a href="#">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#">Servicios</a>
+                    </li>
+                </ul>
+                <p>Descubre el universo con QuantumStore. 
+                    Encuentra una amplia selección de 
+                    telescopios, microscopios, libros de 
+                    astronomía y tutoriales especializados. 
+                    Únete a nuestra comunidad para estar 
+                    al tanto de las últimas noticias y 
+                    ofertas especiales.</p>
             </div>
-            <!-- Formulario de Contacto -->
-            <div class="col-lg-6 col-md-6 col-sm-12">
+             <!-- Inicio seccion Frijol -->
+     <!-- Formulario -->
+     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
                 <div class="form-container">
                     <h2 class="text-center mb-4 text-primary">Contacto</h2>
                     <form>
@@ -107,14 +141,13 @@
             </div>
         </div>
     </div>
-</footer>
-    
+        </div>
+    </footer>
     <!--Fin Footer-->
     <script src="app.js"></script>
+    <script src="./js/slider.js"></script>
     <script src="./js/login.js"></script>
     <script src="./js/cards-home.js"></script>
-    <script src="./js/developers.js"></script>
-    <script src="./js/render-cart-fromlocal.js"></script>
 
 </body>
 </html>
