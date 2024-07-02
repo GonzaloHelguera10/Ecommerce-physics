@@ -1,4 +1,4 @@
-// slider
+// slider.js
 document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.slides');
     const prevButton = document.querySelector('.prev');
@@ -25,16 +25,23 @@ document.addEventListener('DOMContentLoaded', function() {
         sliderContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 
+    function showNextImage() {
+        currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+        updateSlider();
+    }
+
     prevButton.addEventListener('click', function() {
         currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
         updateSlider();
     });
 
     nextButton.addEventListener('click', function() {
-        currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
-        updateSlider();
+        showNextImage();
     });
 
     // Inicia el slider
     updateSlider();
+
+    // Configura el intervalo para cambiar de imagen automáticamente
+    setInterval(showNextImage, 3000); // Cambia la imagen cada 3 segundos
 });
