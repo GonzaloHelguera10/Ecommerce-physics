@@ -7,7 +7,7 @@ function createProductCard(product) {
     }
 
     return `
-        <div class="product-card" data-title="${product.title}" data-price="${product.price}">
+        <div class="product-card" data-title="${product.title}" data-price="${product.price}" data-image="${product.image}">
             <img src="${product.image}" alt="${product.title}" />
             <h2>${product.title}</h2>
             <p>Precio: $${product.price}</p>
@@ -45,12 +45,13 @@ async function renderProductCards() {
                 const card = this.parentElement;
                 const title = card.getAttribute('data-title');
                 const price = card.getAttribute('data-price');
+                const image = card.getAttribute('data-image'); // Obtener la URL de la imagen
 
                 // Obtener productos del carrito de localStorage o inicializar vacío
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
                 // Agregar el producto al carrito
-                cart.push({ title, price });
+                cart.push({ title, price, image });
 
                 // Guardar en localStorage
                 localStorage.setItem('cart', JSON.stringify(cart));

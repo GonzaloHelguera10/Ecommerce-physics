@@ -669,3 +669,29 @@ h1 {
     .cart-actions button:hover {
         background-color: #27ae60;
     }
+
+    /* Estilos del cartel principal */
+
+    .contenedor-centralizado {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    .caja-mensaje {
+        text-align: center;
+    }
+    .boton-personalizado {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    .boton-personalizado:hover {
+        background-color: #0056b3;
+    }
