@@ -97,7 +97,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background: url('/images/background.jpg') no-repeat;
+    /*background: url('/images/background.jpg') no-repeat;*/
     background-color: #264653;
     background-size: cover;
     background-position: center;
