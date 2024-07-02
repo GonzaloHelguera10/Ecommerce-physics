@@ -485,10 +485,13 @@ h1 {
     color: #111;
 }
 /* estilos de card developers */
+.small-text {
+    font-size: 0.8em; /* Ajusta el tamaño según tus necesidades */
+}
 .developer-card {
-    width: 300px;
+    width: 500px;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 5px;
     margin: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

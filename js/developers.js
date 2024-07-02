@@ -13,7 +13,6 @@ async function fetchDevelopers() {
         console.error('Error al obtener datos de los desarrolladores:', error);
     }
 }
-
 // Función para actualizar las tarjetas de desarrolladores con los datos obtenidos
 function updateDeveloperCards(developers) {
     const developerCards = document.querySelectorAll('.developer-card');
@@ -28,12 +27,14 @@ function updateDeveloperCards(developers) {
         h3.textContent = `${name} ${surname}`;
 
         const githubLink = card.querySelector('.contact-link:nth-of-type(1)');
-        githubLink.href = `https://github.com/${github}`;
+        githubLink.href = github;
+        githubLink.target = "_blank"; // Abrir en una nueva pestaña
         githubLink.innerHTML = `<i class='bx bxl-github icon'></i> GitHub`;
 
         const mailLink = card.querySelector('.contact-link:nth-of-type(2)');
-        mailLink.href = `mailto:${mail}`;
-        mailLink.innerHTML = `<i class='bx bx-mail-send icon'></i> Correo Electrónico`;
+        mailLink.href = "#"; // No redirigir a ninguna parte
+        mailLink.target = ""; // No abrir en una nueva pestaña
+        mailLink.innerHTML = `<i class='bx bx-mail-send icon'></i> <span class="small-text">${mail}</span>`; // Texto de correo con clase
     });
 }
 
